@@ -55,6 +55,13 @@ int mvdr_sdr_impl::work(int noutput_items,
 
     //2. read mat file
     std::vector<matlab_matRead> mat_file;
+    std::string struct_name="trackResults";
+    for (int matFileName_index = 1; matFileName_index <=num_inputs_ ; ++matFileName_index) {
+        std::string temp_fileName="home/jiachen/trackingResults"+std::to_string(matFileName_index)+".mat";
+        matlab_matRead temp_read(temp_fileName,struct_name);
+        mat_file.push_back(temp_read);
+        std::cout<<matFileName_index<<std::endl;
+    }
 
     output_type add=0;
     for (int index = 0; index < num_inputs_; ++index) {

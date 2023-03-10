@@ -23,7 +23,10 @@ endif(NOT mvdr_sources)
 
 add_subdirectory(matlab)
 add_library(gnuradio-mvdr SHARED ${mvdr_sources})
-target_link_libraries(gnuradio-mvdr gnuradio::gnuradio-runtime $<BUILD_INTERFACE:matlab_lib>)
+target_link_libraries(gnuradio-mvdr
+        PUBLIC gnuradio::gnuradio-runtime
+        PUBLIC $<BUILD_INTERFACE:matlab_lib>
+        PUBLIC $<INSTALL_INTERFACE:gnuradio_mvdr_EXPORTS)
 target_include_directories(gnuradio-mvdr
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     PUBLIC $<INSTALL_INTERFACE:include>

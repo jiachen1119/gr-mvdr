@@ -141,6 +141,7 @@ endif(ENABLE_PYTHON)
 install(FILES cmake/Modules/gnuradio-mvdrConfig.cmake
     DESTINATION ${GR_CMAKE_DIR}
 )
+install(EXPORT matlab_lib_target DESTINATION ${GR_CMAKE_DIR})
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(

@@ -22,6 +22,14 @@ public:
     const std::vector<int> &getPrnData() const;
     const std::vector<arma::mat> &getCarrPhaseMat() const;
 
+    struct matStruct{
+        int sync_index_;
+        double start_sample_;
+        arma::mat phase_mat_;
+        arma::mat differential_phase_;
+        double differential_PhasePeak_;
+    };
+
 private:
     std::string file_name_;
     std::string struct_name_;
