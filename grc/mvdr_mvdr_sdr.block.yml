@@ -1,0 +1,63 @@
+id: mvdr_mvdr_sdr
+label: mvdr_sdr
+category: '[mvdr]'
+
+templates:
+  imports: from gnuradio import mvdr
+  make: mvdr.mvdr_sdr(${sampling_frequency},${num_inputs},${taps},${target_prn})
+#  callbacks:
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: sampling_frequency
+  label: Sample Frequency
+  dtype: int
+  default: 0
+  hide: none
+
+- id: num_inputs
+  label: Number of inputs
+  dtype: int
+  default: 2
+  hide: none
+
+- id: taps
+  label: Taps
+  dtype: int
+  default: 2
+  hide: none
+
+- id: target_prn
+  label: Target PRN
+  dtype: int
+  default: 5
+  hide: none
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: in
+  domain: stream
+  dtype: float
+  multiplicity: ${num_inputs}
+
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+  multiplicity: 1
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
