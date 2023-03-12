@@ -1,8 +1,7 @@
 find_package(Armadillo REQUIRED)
 
 set(MATLAB_DIR /home/jiachen/MATLAB)
-add_library(matlab_lib matlab.cpp)
-install(TARGETS matlab_lib DESTINATION include/gnuradio/mvdr EXPORT MATLAB_LIB)
+add_library(matlab_lib SHARED matlab.cpp)
 target_link_libraries(matlab_lib
         PUBLIC
         ${ARMADILLO_LIBRARIES}
@@ -18,4 +17,4 @@ target_include_directories(matlab_lib
 target_link_directories(matlab_lib
         PUBLIC
         "${MATLAB_DIR}/bin/glnxa64")
-install(TARGETS matlab_lib EXPORT matlab_lib_target ARCHIVE DESTINATION lib)
+install(TARGETS matlab_lib EXPORT matlab_lib_target ARCHIVE DESTINATION include)
