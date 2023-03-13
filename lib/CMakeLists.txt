@@ -9,6 +9,7 @@
 ########################################################################
 # Setup library
 ########################################################################
+find_package(Armadillo REQUIRED)
 include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND mvdr_sources
@@ -23,11 +24,18 @@ endif(NOT mvdr_sources)
 
 add_subdirectory(matlab)
 add_library(gnuradio-mvdr SHARED ${mvdr_sources})
-target_link_libraries(gnuradio-mvdr gnuradio::gnuradio-runtime $<BUILD_INTERFACE:matlab_lib>)
+target_link_libraries(gnuradio-mvdr gnuradio::gnuradio-runtime)
+
+target_link_libraries(gnuradio-mvdr matlab_lib)
+target_link_libraries(gnuradio-mvdr ${ARMADILLO_LIBRARIES})
+
+
 target_include_directories(gnuradio-mvdr
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     PUBLIC $<INSTALL_INTERFACE:include>
   )
+target_include_directories(gnuradio-mvdr
+        PUBLIC ${ARMADILLO_INCLUDE_DIRS})
 set_target_properties(gnuradio-mvdr PROPERTIES DEFINE_SYMBOL "gnuradio_mvdr_EXPORTS")
 
 if(APPLE)

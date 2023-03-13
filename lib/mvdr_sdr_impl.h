@@ -10,6 +10,7 @@
 
 #include <gnuradio/mvdr/mvdr_sdr.h>
 #include "matlab/matlab.h"
+#include <armadillo>
 
 namespace gr {
 namespace mvdr {
@@ -21,6 +22,7 @@ private:
     int target_prn_;
     int taps_;
     int num_inputs_;
+    double phase_mean_=0;
 
 public:
     mvdr_sdr_impl(int freq, int num_inputs, int taps, int target_prn);

@@ -17,4 +17,7 @@ target_include_directories(matlab_lib
 target_link_directories(matlab_lib
         PUBLIC
         "${MATLAB_DIR}/bin/glnxa64")
-install(TARGETS matlab_lib EXPORT matlab_lib_target ARCHIVE DESTINATION include)
+
+install(TARGETS matlab_lib EXPORT matlab_lib_target LIBRARY DESTINATION lib)
+export(EXPORT matlab_lib_target FILE matlab_lib_target.cmake)
+install(EXPORT matlab_lib_target FILE matlab_lib_target.cmake DESTINATION lib/cmake)

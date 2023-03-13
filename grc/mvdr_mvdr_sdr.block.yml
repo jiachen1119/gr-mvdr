@@ -48,13 +48,13 @@ parameters:
 inputs:
 - label: in
   domain: stream
-  dtype: float
+  dtype: complex
   multiplicity: ${num_inputs}
 
 outputs:
 - label: out
   domain: stream
-  dtype: float
+  dtype: complex
   multiplicity: 1
 
 
